@@ -6,7 +6,7 @@ jobs:
   dire_bonjour:
     runs-on: ubuntu-24.04
     steps:
+      - run : apt install cowsay
       - uses: actions/checkout@v5 #Récupère l'intégralité des fichiers du dépôts
       - run: ls -l # Liste les fichier du répertoire courant
-      - run: cat README.md # Affiche le contenu du fichier `README.md` à la base du dépôt
       - run: cat README.md | cowsay 
