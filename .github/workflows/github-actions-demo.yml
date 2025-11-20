@@ -8,8 +8,8 @@ jobs:
     steps:
       - uses: actions/checkout@v5 #Récupère l'intégralité des fichiers du dépôts
       - uses: actions/setup-node@v6
-          with:
-            node-version: "24"
+        with:
+          node-version: "24"
       - run: npm run build
       - run: ls dist/
 
