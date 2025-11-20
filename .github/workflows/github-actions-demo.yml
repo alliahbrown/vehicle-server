@@ -14,5 +14,4 @@ jobs:
 
       - uses: Code-Hex/neo-cowsay-action@v1
         with:
-          message: | 
-          "${{steps.cowsayid.outputs}}"
+          message: "${{steps.cowsayid.outputs.content}}"
