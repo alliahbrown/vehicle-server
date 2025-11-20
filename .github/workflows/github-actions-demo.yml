@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-24.04
     container:
       image: ghcr.io/cicd-lectures/gitpod:latest
-      option: --user=root
+      options: --user=root
     steps:
       - uses: actions/checkout@v5 #Récupère l'intégralité des fichiers du dépôts
       - run: ls -l # Liste les fichier du répertoire courant
