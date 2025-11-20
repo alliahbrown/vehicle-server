@@ -5,10 +5,14 @@ jobs:
 
   dire_bonjour:
     runs-on: ubuntu-24.04
-    container:
-      image: ghcr.io/cicd-lectures/gitpod:latest
-      options: --user=root
     steps:
       - uses: actions/checkout@v5 #Récupère l'intégralité des fichiers du dépôts
-      - run: ls -l # Liste les fichier du répertoire courant
-      - run: cat README.md | cowsay 
+      - uses: juliangruber/read-file-action@v1
+        id: cowsayid
+        with:
+          path: ./package.json
+
+      - uses: Code-Hex/neo-cowsay-action@v1
+        with:
+          message: | 
+          "${{steps.cowsayis.outputs}}"
