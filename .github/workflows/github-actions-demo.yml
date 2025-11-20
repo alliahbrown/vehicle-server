@@ -10,6 +10,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: "24"
+      - run: nmp ci
       - run: npm run build
       - run: ls dist/
 
