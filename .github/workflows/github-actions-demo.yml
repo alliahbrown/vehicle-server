@@ -1,17 +1,16 @@
-name: Bonjour
+name: vehicle-integration
 on:
   - push
 jobs:
 
-  dire_bonjour:
+  installation_node:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5 #Récupère l'intégralité des fichiers du dépôts
-      - uses: juliangruber/read-file-action@v1
-        id: cowsayid
-        with:
-          path: ./package.json
+      - uses: actions/setup-node@v6
+          with:
+            node-version: 24
+      - run: npm run start
+      - run: node dist/index.js
 
-      - uses: Code-Hex/neo-cowsay-action@v1
-        with:
-          message: "${{steps.cowsayid.outputs.content}}"
+
