@@ -1,6 +1,7 @@
 name: vehicle-integration
 on:
   - push
+  - pull_request
 jobs:
 
   installation_node:
