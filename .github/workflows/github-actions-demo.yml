@@ -14,8 +14,9 @@ jobs:
           node-version: '22.x'
       - name: Check Node Version
         run: node --version
-      - name: Build application
+      - name: npm ci
         run: npm ci
+      - name: Build application
         run: npm run build
       - name: Run Lint
         run: npm run lint
