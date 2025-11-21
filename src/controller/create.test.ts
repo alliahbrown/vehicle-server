@@ -1,15 +1,14 @@
-// import {expect, jest, test} from '@jest/globals';
-// import { Pool } from 'pg';
-// import { Request, Response } from 'express';
+import {expect, jest, test} from '@jest/globals';
+import { Pool } from 'pg';
+import { Request, Response } from 'express';
 
-// import { FakeResponse } from "../fake/response";
-// import { CreateVehicleController } from "./create";
+import { FakeResponse } from "../fake/response";
+import { CreateVehicleController } from "./create";
 
-// import { VehicleStore } from "../store/vehicle";
-// import { AppError, ErrorCode } from "../errors";
+import { VehicleStore } from "../store/vehicle";
+import { AppError, ErrorCode } from "../errors";
 
 
-import {jest} from '@jest/globals';
 import { Vehicle } from "../model/vehicle";
 
 // On définit ici un module `Mock` ie: tout chargement du module `import { VehicleStore } from "../store/vehicle'`
@@ -30,3 +29,35 @@ jest.mock('../store/vehicle', (() => ({
     }
   })
 })));
+
+// Describe décrit un groupe logique de tests, ayant la même logique de mise en place et de nettoyage.
+describe('create vehicle controller', () => {
+  let controller: CreateVehicleController;
+  let store: VehicleStore;
+
+  // Avant chaque test on réinitialise le store et le controller.
+  beforeEach(() => {
+    store =  new VehicleStore({} as Pool); // <- instance mockée!
+    controller = new CreateVehicleController(store);
+  });
+
+  test('creates a valid vehicle', async () => {
+    // Given.
+    const req = {
+      body: {
+        shortcode: 'abac',
+        battery: 17,
+        longitude: 45,
+        latitude: 45
+      },
+    };
+
+    const resp = new FakeResponse();
+
+    // When.
+    await controller.handle(req as Request, resp as unknown as Response);
+
+    // Then.
+    expect(resp.gotStatus).toEqual(200);
+  });
+});
