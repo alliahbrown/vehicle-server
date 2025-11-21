@@ -25,6 +25,7 @@ jest.mock('../store/vehicle', (() => ({
           req.position,
         );
       }),
+      
     }
   })
 })));
@@ -58,5 +59,8 @@ describe('create vehicle controller', () => {
 
     // Then.
     expect(resp.gotStatus).toEqual(200);
+    
   });
 });
+
+
