@@ -6,8 +6,6 @@ import { FakeResponse } from "../fake/response";
 import { CreateVehicleController } from "./create";
 
 import { VehicleStore } from "../store/vehicle";
-import { AppError, ErrorCode } from "../errors";
-
 
 import { Vehicle } from "../model/vehicle";
 
@@ -18,6 +16,7 @@ import { Vehicle } from "../model/vehicle";
 jest.mock('../store/vehicle', (() => ({
   VehicleStore: jest.fn().mockImplementation(() => {
     return {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       createVehicle: jest.fn().mockImplementation(async (req: any): Promise<Vehicle> => {
         return new Vehicle(
           12,
